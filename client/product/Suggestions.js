@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#80808024',
 
 
-    "@media (max-width: 957px)": {
+    "@media (max-width: 980px)": {
 
       'display': 'none'
 
