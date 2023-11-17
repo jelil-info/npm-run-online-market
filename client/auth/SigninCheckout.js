@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import auth from './../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
 import {signin} from './api-auth.js'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -78,6 +79,7 @@ export default function Signin(props) {
   }
 
   return (
+  <NoSSR>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" className={classes.title}>
@@ -96,6 +98,7 @@ export default function Signin(props) {
         <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
       </Card>
+      </NoSSR>
     )
 }
 

@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import {listOpen} from './api-auction.js'
 import Auctions from './Auctions'
+import NoSSR from 'react-no-ssr';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -80,6 +81,7 @@ export default function OpenAuctions(){
     setAuctions(updatedAuctions)
   }
     return (
+    <NoSSR>
     <div>
       <Paper className={classes.root} elevation={4}>
         <Typography type="title" className={classes.title}>
@@ -87,5 +89,7 @@ export default function OpenAuctions(){
         </Typography>
         <Auctions auctions={auctions} removeAuction={removeAuction}/>
       </Paper>
-    </div>)
+    </div>
+    </NoSSR>
+    )
 }

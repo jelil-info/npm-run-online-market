@@ -23,7 +23,7 @@ import {
   Link,
   MenuItem,
 } from "@material-ui/core";
-
+import NoSSR from 'react-no-ssr';
 
 
 
@@ -277,11 +277,12 @@ function Header() {
 
 
     return (
-
+   <NoSSR>
       <Toolbar className={toolbarMargin}>
 
         {DesktopMenu()}
       </Toolbar>
+  </NoSSR>
 
     );
   };
@@ -295,7 +296,7 @@ function Header() {
       setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
-
+  <NoSSR>
       <AppBar position="fixed" className={panelDetails}>
         <Toolbar >
 
@@ -353,6 +354,7 @@ function Header() {
 
         </Toolbar>
       </AppBar>
+      </NoSSR>
     );
   };
 
@@ -373,7 +375,7 @@ function Header() {
     const history = useHistory();
 
     return (
-
+    <NoSSR>
       <AppBar position="fixed">
 
         <Toolbar>
@@ -429,10 +431,13 @@ function Header() {
 
               {
                 auth.isAuthenticated() && (<span>
-                  {auth.isAuthenticated().user.seller && (<>
-                    <span style={{ color: "red", fontWeight: "bold", fontSize: "16px", }}>
+
+                  <span style={{ color: "red", fontWeight: "bold", fontSize: "16px", }}>
                       Hello, {auth.isAuthenticated().user.name}
-                    </span>
+                  </span>
+                  
+                  {auth.isAuthenticated().user.seller && (<>
+                    
                     <Link {...{ component: RouterLink, to: "/seller/shops" }}>
 
                       <Button style={isPartActive(history, "/seller/")}>My Shops</Button></Link>
@@ -470,6 +475,7 @@ function Header() {
           </div>
         </Toolbar>
       </AppBar>
+      </NoSSR>
     )
   }
 
@@ -498,8 +504,8 @@ function Header() {
     return (
 
 
-
-
+      
+<NoSSR>
       <div position="fixed" className={mobileSpace}>
 
 
@@ -625,6 +631,7 @@ function Header() {
           
         </div>
       </div>
+      </NoSSR>
     )
   }
 
@@ -647,7 +654,7 @@ function Header() {
     return (
 
 
-
+<NoSSR>
 
       <div>
 
@@ -742,7 +749,7 @@ function Header() {
 
       </div>
 
-
+</NoSSR>
 
 
 
@@ -799,11 +806,13 @@ function Header() {
   };
 
   return (
-    <div>
+<NoSSR>
+<div>
 
       {mobileView ? displayMobile() : displayDesktop()}
 
     </div>
+    </NoSSR>
   );
 }
 

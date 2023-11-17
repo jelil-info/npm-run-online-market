@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import queryString from 'query-string'
 import {stripeUpdate} from './api-user.js'
 import auth from './../auth/auth-helper'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -62,6 +63,7 @@ export default function StripeConnect(props){
   }, [])
 
     return (
+    <NoSSR>
       <div>
         <Paper className={classes.root} elevation={4}>
           <Typography type="title" className={classes.title}>
@@ -78,5 +80,6 @@ export default function StripeConnect(props){
             </Typography>)}
         </Paper>
       </div>
+      </NoSSR>
     )
 }

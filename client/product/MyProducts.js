@@ -15,6 +15,7 @@ import {Link} from 'react-router-dom'
 import Divider from '@material-ui/core/Divider'
 import {listByShop} from './../product/api-product.js'
 import DeleteProduct from './../product/DeleteProduct'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   products: {
@@ -121,6 +122,7 @@ export default function MyProducts (props){
   }
 
     return (
+    <NoSSR>
       <Card className={classes.products}>
         <Typography type="title" className={classes.title}>
           Products
@@ -163,7 +165,9 @@ export default function MyProducts (props){
               </ListItem>
               <Divider/></span>})}
         </List>
-      </Card>)
+      </Card>
+      </NoSSR>
+      )
 }
 MyProducts.propTypes = {
   shopId: PropTypes.string.isRequired

@@ -11,6 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import auth from './../auth/auth-helper'
 import {remove} from './api-user.js'
 import {Redirect} from 'react-router-dom'
+import NoSSR from 'react-no-ssr'
 
 export default function DeleteUser(props) {
   const [open, setOpen] = useState(false)
@@ -39,7 +40,9 @@ export default function DeleteUser(props) {
   if (redirect) {
     return <Redirect to='/'/>
   }
-    return (<span>
+    return (
+    <NoSSR>
+    <span>
       <IconButton aria-label="Delete" onClick={clickButton} color="secondary">
         <DeleteIcon/>
       </IconButton>
@@ -60,7 +63,9 @@ export default function DeleteUser(props) {
           </Button>
         </DialogActions>
       </Dialog>
-    </span>)
+    </span>
+    </NoSSR>
+    )
 
 }
 DeleteUser.propTypes = {

@@ -8,6 +8,7 @@ import auth from '../auth/auth-helper'
 import {listBySeller} from './api-auction.js'
 import {Redirect, Link} from 'react-router-dom'
 import Auctions from './Auctions'
+import NoSSR from 'react-no-ssr';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -62,6 +63,7 @@ export default function MyAuctions(){
       return <Redirect to='/signin'/>
     }
     return (
+    <NoSSR>
     <div>
       <Paper className={classes.root} elevation={4}>
         <Typography type="title" className={classes.title}>
@@ -76,5 +78,7 @@ export default function MyAuctions(){
         </Typography>
         <Auctions auctions={auctions} removeAuction={removeAuction}/>
       </Paper>
-    </div>)
+    </div>
+    </NoSSR>
+    )
 }

@@ -6,6 +6,8 @@ import {StripeProvider} from 'react-stripe-elements'
 import config from './../../config/config'
 import Checkout2 from './Checkout2'
 import Checkout from './Checkout'
+import NoSSR from 'react-no-ssr'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +31,9 @@ export default function Cart () {
     setCheckout(val)
   }
 
-    return (<div className={classes.root}>
+    return (
+    <NoSSR>
+    <div className={classes.root}>
       <Grid container spacing={8}>
         <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
           <CartItems checkout={checkout}
@@ -43,5 +47,7 @@ export default function Cart () {
         </StripeProvider>
           </Grid>}*/}
         </Grid>
-      </div>)
+      </div>
+      </NoSSR>
+      )
 }

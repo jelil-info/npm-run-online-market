@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import {read} from './api-shop.js'
 import Products from './../product/Products'
 import {listByShop} from './../product/api-product.js'
-
+import NoSSR from 'react-no-ssr'
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -104,7 +104,9 @@ export default function Shop({match}) {
     const logoUrl = shop._id
           ? `/api/shops/logo/${shop._id}?${new Date().getTime()}`
           : '/api/shops/defaultphoto'
-    return (<div className={classes.root}>
+    return (
+    <NoSSR>
+    <div className={classes.root}>
       <Grid container spacing={8}>
         <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
           <Card className={classes.card}>
@@ -127,5 +129,7 @@ export default function Shop({match}) {
           </Card>
         </Grid>
       </Grid>
-    </div>)
+    </div>
+    </NoSSR>
+    )
 }

@@ -8,6 +8,13 @@ import Divider from '@material-ui/core/Divider'
 import {makeStyles} from '@material-ui/core/styles'
 import {read} from './api-order.js'
 import {Link} from 'react-router-dom'
+import Flutterwave from './../cart/Flutterwave'
+import Checkout2 from './../cart/Checkout2'
+import PropTypes from 'prop-types'
+import cart from './../cart/cart-helper.js'
+import auth from './../auth/auth-helper'
+import NoSSR from 'react-no-ssr'
+
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -156,9 +163,25 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Order({match}) {
+
+
+  const user = auth.isAuthenticated().user
+  const [values, setValues] = useState({
+    checkoutDetails: {
+      products: cart.getCart(),
+      //amount: cart.getTotal(),
+      customer_name: user.name,
+      customer_email: user.email,
+      delivery_address: { street: '', city: '', state: '', zipcode: '', country: '' }
+    },
+    error: ''
+  })
+
+  
   const classes = useStyles()
   const [order, setOrder] = useState({products:[], delivery_address:{}})
-
+  
+  
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -184,6 +207,7 @@ export default function Order({match}) {
   }
 
     return (
+    <NoSSR>
       <Card className={classes.card}>
         <Typography type="headline" component="h2" className={classes.title}>
             Order Details
@@ -235,8 +259,15 @@ export default function Order({match}) {
                 <Typography type="subheading" component="h3" className={classes.itemShop} color="primary">{order.delivery_address.country}</Typography><br/>
                 <Typography type="subheading" component="h3" className={classes.thanks} color="primary">Thank you for shopping with us! <br/>You can track the status of your purchased items on this page.</Typography>
               </Card>
+              <Flutterwave  getTotal={getTotal} checkoutDetails={values.checkoutDetails} />
             </Grid>
         </Grid>
       </Card>
+      </NoSSR>
     )
+}
+
+Order.propTypes = {
+  checkoutDetails: PropTypes.object.isRequired,
+  
 }

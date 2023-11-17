@@ -14,6 +14,7 @@ import DeleteAuction from './DeleteAuction'
 import auth from '../auth/auth-helper'
 import {Link} from 'react-router-dom'
 import {makeStyles} from '@material-ui/core/styles'
+import NoSSR from 'react-no-ssr';
 
 
 
@@ -116,6 +117,7 @@ export default function Auctions(props){
     )
   }
     return (
+    <NoSSR>
         <List className={classes.auctionRoot} dense>
         {props.auctions.map((auction, i) => {
             return   <span key={i}>
@@ -145,6 +147,7 @@ export default function Auctions(props){
               <Divider/>
             </span>})}
         </List>
+        </NoSSR>
     )
 }
 

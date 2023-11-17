@@ -7,6 +7,7 @@ import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 import {Link} from 'react-router-dom'
 import AddToCart from './../cart/AddToCart'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -88,6 +89,7 @@ const useStyles = makeStyles(theme => ({
 export default function Products(props){
   const classes = useStyles()
     return (
+    <NoSSR>
       <div className={classes.root}>
       {props.products.length > 0 ?
         (<div className={classes.container}>
@@ -143,7 +145,9 @@ export default function Products(props){
 
         
         </div>) : props.searched && (<Typography variant="subheading" component="h4" className={classes.title}>No products found! </Typography>)}
-      </div>)
+      </div>
+      </NoSSR>
+      )
 }
 Products.propTypes = {
   products: PropTypes.array.isRequired,

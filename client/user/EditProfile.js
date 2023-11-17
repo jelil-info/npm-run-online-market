@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import auth from './../auth/auth-helper'
 import {read, update} from './api-user.js'
 import {Redirect} from 'react-router-dom'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -105,6 +106,7 @@ export default function EditProfile({ match }) {
     return (<Redirect to={'/user/' + values.userId}/>)
   }
     return (
+    <NoSSR>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
@@ -138,5 +140,6 @@ export default function EditProfile({ match }) {
           <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
       </Card>
+      </NoSSR>
     )
 }

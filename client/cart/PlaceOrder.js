@@ -9,6 +9,7 @@ import cart from './cart-helper.js'
 import {CardElement, injectStripe} from 'react-stripe-elements'
 import {create} from './../order/api-order.js'
 import {Redirect} from 'react-router-dom'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   subheading: {
@@ -41,54 +42,31 @@ const PlaceOrder = (props) => {
   const classes = useStyles()
   const [values, setValues] = useState({
     order: {},
-    PBFKey: '',
-    //txRef : number,
     error: '',
     redirect: false,
     orderId: ''
   })
-  
-  
+
   const placeOrder = ()=>{
+    props.stripe.createToken().then(payload => {
+      if(payload.error){
+        setValues({...values, error: payload.error.message})
+      }else{
+        const jwt = auth.isAuthenticated()
+        create({userId:jwt.user._id}, {
+          t: jwt.token
+        }, props.checkoutDetails, payload.token.id).then((data) => {
+          if (data.error) {
+            setValues({...values, error: data.error})
+          } else {
+            cart.emptyCart(()=> {
+              setValues({...values, 'orderId':data._id,'redirect': true})
+            })
+          }
+        })
+      }
+  })
     
-
-    const PBFKey = "FLWPUBK-16ddebf73894c626d0cf438dcd57df08-X"; // paste in the public key from your dashboard here
-    const txRef = ''+Math.floor((Math.random() * 1000000000) + 1); //Generate a random id for the transaction reference
-              
-    
-      
-  
-    
-  
-          
-            FlutterwaveCheckout({
-              public_key: PBFKey,
-              tx_ref: txRef,
-              amount: 100,
-              currency: "NGN",
-              payment_options: "card, mobilemoneyghana, ussd",
-              redirect_url: "https://glaciers.titanic.com/handle-flutterwave-payment",
-              meta: {
-                consumer_id: 23,
-                consumer_mac: "92a3-912ba-1192a",
-              },
-              customer: {
-                email: "oyekanmijelili@gmail.com",
-                phone_number: "07030786761",
-                name: "jelil",
-              },
-              customizations: {
-                title: "The Titanic Store",
-                description: "Payment for an awesome cruise",
-                logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
-              },
-            });
-          
-          
-  
-      
-
-
 }
 
 
@@ -96,11 +74,28 @@ const PlaceOrder = (props) => {
       return (<Redirect to={'/order/' + values.orderId}/>)
     }
     return (
+    <NoSSR>
     <span>
       <Typography type="subheading" component="h3" className={classes.subheading}>
         Card details
       </Typography>
-      
+      <CardElement
+        className={classes.StripeElement}
+          {...{style: {
+                        base: {
+                          color: '#424770',
+                          letterSpacing: '0.025em',
+                          fontFamily: 'Source Code Pro, Menlo, monospace',
+                          '::placeholder': {
+                            color: '#aab7c4',
+                          },
+                        },
+                        invalid: {
+                          color: '#9e2146',
+                        },
+                      }
+          }}
+      />
       <div className={classes.checkout}>
         { values.error &&
           (<Typography component="span" color="error" className={classes.error}>
@@ -110,11 +105,13 @@ const PlaceOrder = (props) => {
         }
         <Button color="secondary" variant="contained" onClick={placeOrder}>Place Order</Button>
       </div>
-    </span>)
+    </span>
+    </NoSSR>
+    )
 
 }
 PlaceOrder.propTypes = {
   checkoutDetails: PropTypes.object.isRequired
 }
 
-export default PlaceOrder
+export default injectStripe(PlaceOrder)

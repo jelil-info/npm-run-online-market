@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom'
 import auth from '../auth/auth-helper'
 import Timer from './Timer'
 import Bidding from './Bidding'
+import NoSSR from 'react-no-ssr';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -129,6 +130,7 @@ export default function Auction ({match}) {
           : '/api/auctions/defaultphoto'
   const currentDate = new Date()
     return (
+    <NoSSR>
         <div className={classes.root}>
               <Card className={classes.card}>
                 <CardHeader
@@ -171,5 +173,7 @@ export default function Auction ({match}) {
                 
               </Card>
 
-        </div>)
+        </div>
+        </NoSSR>
+        )
 }

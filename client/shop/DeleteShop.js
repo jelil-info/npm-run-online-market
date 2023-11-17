@@ -10,6 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import auth from './../auth/auth-helper'
 import {remove} from './api-shop.js'
+import NoSSR from 'react-no-ssr'
 
 export default function DeleteShop(props) {
   const [open, setOpen] = useState(false)
@@ -33,7 +34,9 @@ export default function DeleteShop(props) {
   const handleRequestClose = () => {
     setOpen(false)
   }
-    return (<span>
+    return (
+    <NoSSR>
+    <span>
       <IconButton aria-label="Delete" onClick={clickButton} color="secondary">
         <DeleteIcon/>
       </IconButton>
@@ -54,7 +57,10 @@ export default function DeleteShop(props) {
           </Button>
         </DialogActions>
       </Dialog>
-    </span>)
+    </span>
+    
+    </NoSSR>
+    )
 }
 DeleteShop.propTypes = {
   shop: PropTypes.object.isRequired,

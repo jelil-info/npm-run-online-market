@@ -95,6 +95,7 @@ export default function Categories(props){
             Explore by category
           </Typography>
           <div className={classes.root}>
+            
             <GridList className={classes.gridList} cols={4}>
               {props.categories.map((tile, i) => (
                 <GridListTile key={i} className={classes.tileTitle} style={{height: '64px', backgroundColor: selected == tile? 'rgba(95, 139, 137, 0.56)':'rgba(95, 124, 139, 0.32)'}}>
@@ -102,6 +103,7 @@ export default function Categories(props){
                 </GridListTile>
               ))}
             </GridList>
+            
           </div>
           <Divider/>
           <Products products={products} searched={false}/>

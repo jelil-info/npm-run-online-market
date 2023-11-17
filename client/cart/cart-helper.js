@@ -56,7 +56,8 @@ const cart = {
       localStorage.removeItem('cart')
       cb()
     }
-  }
+  },
+  
 }
 
 export default cart

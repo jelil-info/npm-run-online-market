@@ -1,5 +1,16 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+//import { Route, Switch } from 'react-router-dom'
+import { 
+
+  BrowserRouter as Router, 
+
+  Switch, 
+
+  Route, 
+
+  Redirect, 
+
+} from "react-router-dom"
 import Home from './core/Home'
 import Users from './user/Users'
 import Signup from './user/Signup'
@@ -33,6 +44,8 @@ import A from './cart/A'
 const MainRouter = () => {
   return (<div>
     <DesktopMenu />
+    
+    
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/users" component={Users} />
@@ -66,7 +79,10 @@ const MainRouter = () => {
       <PrivateRoute path="/auction/edit/:auctionId" component={EditAuction} />
       <Route path="/auction/:auctionId" component={Auction} />
       <Route path="/auctions/all" component={OpenAuctions} />
+      
     </Switch>
+    
+  
   </div>)
 }
 

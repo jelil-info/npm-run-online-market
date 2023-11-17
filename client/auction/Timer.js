@@ -1,6 +1,7 @@
 import React, {useState, useEffect}  from 'react'
 import Typography from '@material-ui/core/Typography'
 import {makeStyles} from '@material-ui/core/styles'
+import NoSSR from 'react-no-ssr';
 
 const useStyles = makeStyles(theme => ({
     endTime: {
@@ -48,7 +49,9 @@ export default function Timer (props) {
         clearTimeout(timer)
       }
     })
-    return (<div className={classes.subheading}>
+    return (
+    <NoSSR>
+    <div className={classes.subheading}>
         {!timeLeft.timeEnd? <Typography component="p" variant="h6" >
                 {timeLeft.days != 0 && `${timeLeft.days} d `} 
                 {timeLeft.hours != 0 && `${timeLeft.hours} h `} 
@@ -56,5 +59,6 @@ export default function Timer (props) {
                 {timeLeft.seconds != 0 && `${timeLeft.seconds} s`} left <span className={classes.endTime}>{`(ends at ${new Date(props.endTime).toLocaleString()})`}</span></Typography> : 
             <Typography component="p" variant="h6" >Auction ended</Typography>}
         </div>
+        </NoSSR>
     )
 }

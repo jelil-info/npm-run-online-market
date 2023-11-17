@@ -9,6 +9,9 @@ import Button from '@material-ui/core/Button'
 import SearchIcon from '@material-ui/icons/Search'
 import {list} from './api-product.js'
 import Products from './Products'
+//import NoSSR from 'react-no-ssr';
+import NoSSR from 'react-no-ssr';
+
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -240,7 +243,9 @@ export default function Search(props) {
     }
   }
     return (
+    <NoSSR>
       <div>
+            
         <Card className={classes.card}>
           <TextField
             id="select-category"
@@ -289,6 +294,7 @@ export default function Search(props) {
         </Card>
         
       </div>
+      </NoSSR>
     )
 }
 Search.propTypes = {

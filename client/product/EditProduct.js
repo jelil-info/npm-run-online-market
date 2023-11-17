@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import {withStyles} from '@material-ui/core/styles'
 import {read, update} from './api-product.js'
 import {Link, Redirect} from 'react-router-dom'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -136,7 +137,9 @@ export default function EditProduct ({match}) {
     if (values.redirect) {
       return (<Redirect to={'/seller/shop/edit/'+match.params.shopId}/>)
     }
-    return (<div>
+    return (
+    <NoSSR>
+    <div>
       <Card className={classes.card}>
         <CardContent>
           <Typography type="headline" component="h2" className={classes.title}>
@@ -175,5 +178,7 @@ export default function EditProduct ({match}) {
           <Link to={'/seller/shops/edit/'+match.params.shopId} className={classes.submit}><Button variant="contained">Cancel</Button></Link>
         </CardActions>
       </Card>
-    </div>)
+    </div>
+    </NoSSR>
+    )
 }

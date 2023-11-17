@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import {read, update} from './api-auction.js'
 import {Redirect} from 'react-router-dom'
 import  styles from  './App.module.css';
+import NoSSR from 'react-no-ssr';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -171,7 +172,9 @@ export default function EditShop ({match}) {
     if (redirect) {
       return (<Redirect to={'/myauctions'}/>)
     }
-    return (<div className={classes.root}>
+    return (
+    <NoSSR>
+    <div className={classes.root}>
           <Card className={classes.card}>
             <CardContent>
               <Typography type="headline" component="h2" className={classes.title}>
@@ -233,5 +236,7 @@ export default function EditShop ({match}) {
               <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Update</Button>
             </CardActions>
           </Card>
-    </div>)
+    </div>
+    </NoSSR>
+    )
 }

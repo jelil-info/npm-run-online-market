@@ -13,6 +13,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
 import {list} from './api-user.js'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -47,6 +48,7 @@ export default function Users() {
   }, [])
 
   return (
+  <NoSSR>
     <Paper className={classes.root} elevation={4}>
       <Typography variant="h6" className={classes.title}>
         All Users
@@ -72,5 +74,6 @@ export default function Users() {
            }
       </List>
     </Paper>
+    </NoSSR>
   )
 }

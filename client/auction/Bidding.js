@@ -11,6 +11,7 @@ import {makeStyles} from '@material-ui/core/styles'
 //import  './client/auction/styles.css'
 //import './../client/style.css';
 import  styles from  './App.module.css';
+import NoSSR from 'react-no-ssr';
 
 //const io = require('socket.io-client')
 const { io } = require("socket.io-client");
@@ -261,6 +262,7 @@ export default function Bidding (props) {
     }
     const minBid = props.auction.bids && props.auction.bids.length> 0 ? props.auction.bids[0].bid : props.auction.startingBid
     return(
+    <NoSSR>
         <div>
             {!props.justEnded && new Date() < new Date(props.auction.bidEnd) && <div className={classes.placeForm}>
                 <TextField id="bid" label="Your Bid (₦)"  
@@ -297,5 +299,6 @@ export default function Bidding (props) {
                 </div>
             </div>
         </div>
+        </NoSSR>
     )
 }

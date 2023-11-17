@@ -22,6 +22,7 @@ import stripeButton from './../assets/images/stripeButton.png'
 import MyOrders from './../order/MyOrders'
 import Auctions from './../auction/Auctions'
 import { listByBidder } from './../auction/api-auction.js'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -230,6 +231,7 @@ export default function Profile({ match }) {
     return <Redirect to='/signin' />
   }
   return (
+  <NoSSR>
     <Paper className={classes.root} elevation={4}>
 
       <Typography variant="h6" className={classes.title}>
@@ -283,5 +285,6 @@ export default function Profile({ match }) {
         <Auctions auctions={auctions} removeAuction={removeAuction} />
       </Paper>
     </Paper>
+    </NoSSR>
   )
 }

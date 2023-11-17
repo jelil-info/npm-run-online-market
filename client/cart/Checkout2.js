@@ -9,10 +9,13 @@ import cart from './cart-helper.js'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import PlaceOrder from './PlaceOrder'
+import PlaceOrder2 from './PlaceOrder2'
+import Flutterwave from './Flutterwave'
 import { Elements } from 'react-stripe-elements'
 import PropTypes from 'prop-types'
 import {StripeProvider} from 'react-stripe-elements'
 import config from './../../config/config'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -85,12 +88,15 @@ export default function Checkout() {
   const [values, setValues] = useState({
     checkoutDetails: {
       products: cart.getCart(),
+      //amount: cart.getTotal(),
       customer_name: user.name,
       customer_email: user.email,
       delivery_address: { street: '', city: '', state: '', zipcode: '', country: '' }
     },
     error: ''
   })
+
+  
 
   const handleCustomerChange = name => event => {
     let checkoutDetails = values.checkoutDetails
@@ -105,7 +111,8 @@ export default function Checkout() {
   }
 
   return (
-    
+  <NoSSR>
+    <StripeProvider apiKey={config.stripe_test_api_key}>
     <Card className={classes.card}>
       <Typography type="title" className={classes.title}>
         Checkout2
@@ -118,7 +125,7 @@ export default function Checkout() {
       <TextField id="street" label="Street Address" className={classes.streetField} value={values.checkoutDetails.delivery_address.street} onChange={handleAddressChange('street')} margin="normal" /><br />
       <TextField id="city" label="City" className={classes.addressField} value={values.checkoutDetails.delivery_address.city} onChange={handleAddressChange('city')} margin="normal" />
       <TextField id="state" label="State" className={classes.addressField} value={values.checkoutDetails.delivery_address.state} onChange={handleAddressChange('state')} margin="normal" /><br />
-      <TextField id="zipcode" label="Zip Code" className={classes.addressField} value={values.checkoutDetails.delivery_address.zipcode} onChange={handleAddressChange('zipcode')} margin="normal" />
+      <TextField id="zipcode" label="Phone Number" className={classes.addressField} value={values.checkoutDetails.delivery_address.zipcode} onChange={handleAddressChange('zipcode')} margin="normal" />
       <TextField id="country" label="Country" className={classes.addressField} value={values.checkoutDetails.delivery_address.country} onChange={handleAddressChange('country')} margin="normal" />
 
       <br /> {
@@ -129,12 +136,15 @@ export default function Checkout() {
       
       <div className={classes.elements}>
         
-      
+        <Elements >
           
             <PlaceOrder checkoutDetails={values.checkoutDetails} />
             
-        
+        </Elements>
         Card numbers; Month/Year; CVC
+        {/*<Flutterwave  checkoutDetails={values.checkoutDetails} />*/}
+        <PlaceOrder2  checkoutDetails={values.checkoutDetails} />
+        
         </div>
         {/*<Link to='/' className={classes.continueBtn}>
           <Button variant="contained">Continue Shopping</Button>
@@ -143,12 +153,15 @@ export default function Checkout() {
 
 
         
-      
+
+        
 
         
       
 
       
     </Card>
-  )
+    </StripeProvider>
+    </NoSSR>
+    )
 }

@@ -14,7 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
-
+import NoSSR from 'react-no-ssr'
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 600,
@@ -69,7 +69,9 @@ export default function Signup() {
       }
     })
   }   
-    return (<div>
+    return (
+    <NoSSR>
+    <div>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
@@ -104,5 +106,6 @@ export default function Signup() {
         </DialogActions>
       </Dialog>
     </div>
+    </NoSSR>
   )
 }

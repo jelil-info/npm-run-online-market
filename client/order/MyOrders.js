@@ -9,6 +9,7 @@ import Divider from '@material-ui/core/Divider'
 import auth from './../auth/auth-helper'
 import {listByUser} from './api-order.js'
 import {Link} from 'react-router-dom'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -46,6 +47,7 @@ export default function MyOrders(){
   }, [])
 
     return (
+    <NoSSR>
       <Paper className={classes.root} elevation={4}>
         <Typography type="title" className={classes.title}>
           Your Orders
@@ -62,5 +64,6 @@ export default function MyOrders(){
                     </span>})}
         </List>
       </Paper>
+      </NoSSR>
     )
 }

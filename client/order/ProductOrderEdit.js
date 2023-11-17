@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField'
 import Divider from '@material-ui/core/Divider'
 import auth from './../auth/auth-helper'
 import {getStatusValues, update, cancelProduct, processCharge} from './api-order.js'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   nested: {
@@ -145,6 +146,7 @@ export default function ProductOrderEdit (props){
     }
   }
     return (
+    <NoSSR>
     <div>
       <Typography component="span" color="error" className={classes.statusMessage}>
         {values.error}
@@ -188,7 +190,9 @@ export default function ProductOrderEdit (props){
                 </span>})
               }
       </List>
-    </div>)
+    </div>
+    </NoSSR>
+    )
 }
 ProductOrderEdit.propTypes = {
   shopId: PropTypes.string.isRequired,

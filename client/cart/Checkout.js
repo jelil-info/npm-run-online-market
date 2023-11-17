@@ -8,6 +8,7 @@ import auth from './../auth/auth-helper'
 import cart from './cart-helper.js'
 import PlaceOrder from './PlaceOrder'
 import {Elements} from 'react-stripe-elements'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -68,6 +69,7 @@ export default function Checkout (){
   }
 
     return (
+    <NoSSR>
       <Card className={classes.card}>
         <Typography type="title" className={classes.title}>
           Checkout
@@ -88,9 +90,11 @@ export default function Checkout (){
                 {values.error}</Typography>)
           }
         <div>
-          
+          <Elements>
             <PlaceOrder checkoutDetails={values.checkoutDetails} />
-          
+          </Elements>
         </div>
-      </Card>)
+      </Card>
+      </NoSSR>
+      )
 }

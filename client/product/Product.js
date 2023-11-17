@@ -12,6 +12,7 @@ import Suggestions from './../product/Suggestions'
 import AddToCart from './../cart/AddToCart'
 //import ImageList from '@material-ui/core/ImageList'
 //import ImageListItem from '@material-ui/core/ImageListItem';
+import NoSSR from 'react-no-ssr'
 
 
 const useStyles = makeStyles(theme => ({
@@ -185,6 +186,7 @@ export default function Product ({match}) {
           ? `/api/product/image/${product._id}?${new Date().getTime()}`
           : '/api/product/defaultphoto'
     return (
+    <NoSSR>
         <div className={classes.root}>
           <Grid container spacing={10}>
             <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
@@ -227,5 +229,7 @@ export default function Product ({match}) {
                 <Suggestions  products={suggestions} title='Related Products'/>
               </Grid>)}
           </Grid>
-        </div>)
+        </div>
+        </NoSSR>
+        )
 }

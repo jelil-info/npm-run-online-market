@@ -6,6 +6,7 @@ import AddCartIcon from '@material-ui/icons/AddShoppingCart'
 import DisabledCartIcon from '@material-ui/icons/RemoveShoppingCart'
 import cart from './cart-helper.js'
 import { Redirect } from 'react-router-dom'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   iconButton: {
@@ -31,7 +32,9 @@ export default function AddToCart(props) {
     if (redirect) {
       return (<Redirect to={'/cart'}/>)
     }
-    return (<span>
+    return (
+    <NoSSR>
+    <span>
       {props.item.quantity >= 0 ?
         <IconButton color="secondary" dense="dense" onClick={addToCart}>
           <AddCartIcon className={props.cartStyle || classes.iconButton}/>
@@ -39,7 +42,9 @@ export default function AddToCart(props) {
         <IconButton disabled={true} color="secondary" dense="dense">
           <DisabledCartIcon className={props.cartStyle || classes.disabledIconButton}/>
         </IconButton>}
-      </span>)
+      </span>
+      </NoSSR>
+      )
 }
 
 AddToCart.propTypes = {

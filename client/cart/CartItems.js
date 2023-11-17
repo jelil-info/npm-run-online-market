@@ -14,6 +14,7 @@ import {Link} from 'react-router-dom'
 import { Link as RouterLink } from "react-router-dom"
 import A from './A'
 import Checkout2 from './Checkout2'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -144,7 +145,9 @@ export default function CartItems (props) {
     props.setCheckout(true)
   }
 
-    return (<Card className={classes.card}>
+    return (
+    <NoSSR>
+    <Card className={classes.card}>
       <Typography type="title" className={classes.title}>
         Shopping Cart
       </Typography>
@@ -218,7 +221,9 @@ export default function CartItems (props) {
       </span>) :
       <Typography variant="subtitle1" component="h3" color="primary">No items added to your cart.</Typography>
     }
-    </Card>)
+    </Card>
+    </NoSSR>
+    )
 }
 
 CartItems.propTypes = {

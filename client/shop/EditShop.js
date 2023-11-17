@@ -14,6 +14,7 @@ import {read, update} from './api-shop.js'
 import {Redirect} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import MyProducts from './../product/MyProducts'
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -124,7 +125,9 @@ export default function EditShop ({match}) {
     if (values.redirect) {
       return (<Redirect to={'/seller/shops'}/>)
     }
-    return (<div className={classes.root}>
+    return (
+    <NoSSR>
+    <div className={classes.root}>
       <Grid container spacing={8}>
         <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
           <Card className={classes.card}>
@@ -171,5 +174,7 @@ export default function EditShop ({match}) {
             <MyProducts shopId={match.params.shopId}/>
           </Grid>
         </Grid>
-    </div>)
+    </div>
+    </NoSSR>
+    )
 }

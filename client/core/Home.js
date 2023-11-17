@@ -2,17 +2,20 @@ import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Suggestions from './../product/Suggestions'
+import Suggestions2 from './../product/Suggestions2'
 import {listLatest, listCategories} from './../product/api-product.js'
 import Search from './../product/Search'
 import Categories from './../product/Categories'
 import { useRef } from 'react';
 
+import NoSSR from 'react-no-ssr';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    //flexGrow: 1,
     margin: 30,
+    'box-sizing': 'border-box',
     
       /*height: '100vh',
       backgroundColor: 'blue',
@@ -83,6 +86,7 @@ export default function Home(){
 
     return (
       <div className={classes.root}>
+        <NoSSR>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
             <Search categories={categories}/>
@@ -90,12 +94,14 @@ export default function Home(){
           </Grid>
           <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
             <Suggestions products={suggestions} title={suggestionTitle}/>
+            {/*<Suggestions2 products={suggestions} title={suggestionTitle}/>*/}
           </Grid>
         </Grid>
+        </NoSSR>
         <div>
       <h2>Width: {windowSize.current[0]}</h2>
 
-      <h2>Height: {windowSize.current[1]}</h2>
+    <h2>Height: {windowSize.current[1]}</h2>
     </div>
       </div>
     )

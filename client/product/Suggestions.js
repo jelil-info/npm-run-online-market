@@ -1,4 +1,5 @@
-import React from 'react'
+//import React from 'react'
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -12,7 +13,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import AddToCart from './../cart/AddToCart'
-import { useState } from 'react';
+//import { useState } from 'react';
 //import { makeStyles } from '@material-ui/styles';
 //import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -43,6 +44,7 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 //import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 //import itemData from './itemData';
+import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
 
@@ -58,6 +60,7 @@ const useStyles = makeStyles(theme => ({
 
     },
   },
+
 
   mobileRoot: {
 
@@ -81,16 +84,15 @@ const useStyles = makeStyles(theme => ({
 
   },
 
-
-
-
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
     fontSize: '1.1em'
   },
 
-  mobileTitle: {
+  
+
+mobileTitle: {
 
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: 'red',
@@ -102,6 +104,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
 
+
+
+
+
+  
+  
+
+  
   viewButton: {
     verticalAlign: 'middle',
     
@@ -337,12 +347,75 @@ const useStyles = makeStyles(theme => ({
 
 export default function Suggestions(props) {
   const classes = useStyles();
+  
   //const [expanded, setExpanded] = useState(false);
   /*const toggleExpanded = () => {
     setExpanded(!expanded);
   };*/
-  return (<div>
-    <Paper className={classes.root} elevation={4}>
+
+  
+  /*const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Define the screen width at which you want the component to appear/disappear
+      const screenWidthThreshold = 1000; // Change this value as needed
+
+      if (window.innerWidth < screenWidthThreshold) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+    };
+
+    // Add a resize event listener to update the visibility on window resize
+    window.addEventListener('resize', handleResize);
+
+    // Initial check for visibility
+    handleResize();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const [isVisible2, setIsVisible2] = useState(true);
+
+  useEffect(() => {
+    const handleResize2 = () => {
+      // Define the screen width at which you want the component to appear/disappear
+      const screenWidthThreshold = 1000; // Change this value as needed
+
+      if (window.innerWidth > screenWidthThreshold) {
+        setIsVisible2(false);
+      } else {
+        setIsVisible2(true);
+      }
+    };
+
+    // Add a resize event listener to update the visibility on window resize
+    window.addEventListener('resize', handleResize2);
+
+    // Initial check for visibility
+    handleResize2();
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize2);
+    };
+  }, []);*/
+
+  
+
+  
+
+
+
+  return (
+  <NoSSR>
+  <div>
+    <Paper className={classes.root} elevation={4} >
       <div type="title" className={classes.title}>
         {props.title}
       </div>
@@ -518,7 +591,7 @@ export default function Suggestions(props) {
 
     
     
-    <div className={classes.rootImage}>
+    {/*<div className={classes.rootImage}>
       <ImageList className={classes.imageList} cols={3}>
         {props.products.map((item,i) => (
           
@@ -540,12 +613,12 @@ export default function Suggestions(props) {
           </ImageListItem>
         ))}
       </ImageList>
-    </div>
+            </div>*/}
     
 
 
 
-    <List 
+    {/*<List 
       orientation="horizontal"
       variant="outlined"
       sx={{
@@ -588,13 +661,13 @@ export default function Suggestions(props) {
         Adam Tris
       </ListItem>
 
-    </List>
+    </List>*/}
 
     
 
   </div>
 
-
+</NoSSR>
 
   )
 }
