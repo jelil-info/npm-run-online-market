@@ -3,7 +3,7 @@ export default ({markup, css}) => {
       <html lang="en">
         <head>
           <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           <meta name="Keywords" content="suok, The online market for all products"/>
           <meta name="author" content="Oyekanmi Oyetunji"/>
           <meta name="refresh" content="30"/>
