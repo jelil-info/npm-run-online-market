@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
     //overflow: 'hidden',
 
     //'width':'700px',
-    "@media (min-width: 979px)": {
+    "@media (min-width: 980px)": {
 
       'display': 'none'
     },
