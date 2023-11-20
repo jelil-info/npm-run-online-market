@@ -3,10 +3,10 @@ export default ({markup, css}) => {
       <html lang="en">
         <head>
           <meta charset="utf-8">
-          <meta name="viewport" content="width=500, initial-scale=1" />
-
-          
-          
+          <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <meta name="Keywords" content="suok, The online market for all products"/>
+          <meta name="author" content="Oyekanmi Oyetunji"/>
+          <meta name="refresh" content="30"/>
           <title>Online Market</title>
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
