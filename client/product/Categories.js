@@ -89,6 +89,7 @@ export default function Categories(props){
   }
 
     return (
+    <NoSSR>
       <div>
         <Card className={classes.card}>
           <Typography type="title" className={classes.title}>
@@ -109,6 +110,7 @@ export default function Categories(props){
           <Products products={products} searched={false}/>
         </Card>
       </div>
+      </NoSSR>
     )
 }
 Categories.propTypes = {
