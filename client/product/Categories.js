@@ -9,6 +9,7 @@ import GridListTile from '@material-ui/core/GridListTile'
 import Icon from '@material-ui/core/Icon'
 import {list} from './api-product.js'
 import Products from './Products'
+import NoSSR from 'react-no-ssr
 
 const useStyles = makeStyles(theme => ({
   root: {
