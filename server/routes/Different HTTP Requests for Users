@@ -1,0 +1,86 @@
+           Different HTTP Requests for Users
+
+Listing users with GET
+Creating a new user with POST
+/api/users/:userId for the following:
+Fetching a user with GET
+Updating a user with PUT
+Deleting a user with DELETE
+
+
+          mern-skeleton/server/express.js
+          
+import userRoutes from './routes/user.routes'
+...
+app.use('/', userRoutes)
+...
+
+
+
+         mern-skeleton/server/routes/user.routes.js
+         
+import express from 'express'
+import userCtrl from '../controllers/user.controller'
+const router = express.Router()
+router.route('/api/users')
+.get(userCtrl.list)
+.post(userCtrl.create)
+router.route('/api/users/:userId')
+.get(userCtrl.read)
+.put(userCtrl.update)
+.delete(userCtrl.remove)
+router.param('userId', userCtrl.userByID)
+export default router
+
+
+          The user.controller.js file will have the following structure:
+
+import User from '../models/user.model'
+import extend from 'lodash/extend'
+import errorHandler from './error.controller'
+const create = (req, res, next) => { … }
+const list = (req, res) => { … }
+const userByID = (req, res, next, id) => { … }
+const read = (req, res) => { … }
+const update = (req, res, next) => { … }
+const remove = (req, res, next) => { … }
+export default { create, userByID, read, list, remove, update }
+
+
+                            Auth routes
+                            
+                            Auth routes
+The two auth APIs are defined in the auth.routes.js file using express.Router()
+to declare the route paths with the relevant HTTP methods. They're also
+assigned the corresponding controller functions, which should be called
+when requests are received for these routes.
+The auth routes are as follows:
+: POST request to authenticate the user with their email
+and password
+'/auth/signout': GET request to clear the cookie containing a JWT that
+was set on the response object after sign-in
+'/auth/signin'
+The resulting mern-skeleton/server/routes/auth.routes.js file will be as follows:
+import express from 'express'
+import authCtrl from '../controllers/auth.controller'
+const router = express.Router()
+router.route('/auth/signin')
+.post(authCtrl.signin)
+router.route('/auth/signout')
+.get(authCtrl.signout)
+export default router
+A POST request to the signin route and a GET request to the signout route
+
+
+
+              The mern-skeleton/server/controllers/auth.controller.js file will have the
+following structure:
+import User from '../models/user.model'
+import jwt from 'jsonwebtoken'
+import expressJwt from 'express-jwt'
+import config from './../../config/config'
+const signin = (req, res) => { … }
+const signout = (req, res) => { … }
+const requireSignin = …
+const hasAuthorization = (req, res) => { … }
+export default { signin, signout, requireSignin, hasAuthorization }

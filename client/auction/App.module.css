@@ -1,0 +1,107 @@
+
+
+.bidContainer {
+         
+    
+    
+    
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap : 5px 50px;
+    justify-content : start;
+    padding: 10px;
+
+    @media only screen and (max-width: 531px) {
+  
+        grid-column-gap :  30px;
+  
+};
+
+@media only screen and (max-width: 537px) {
+  
+    grid-gap : 5px 20px;
+    
+
+};
+
+@media only screen and (max-width: 339px) {
+  
+    grid-column-gap :  10px;
+
+};
+
+
+    
+
+}
+
+/*bidContainerItem {
+         
+        
+padding: '20px',
+
+}*/
+
+
+
+.bidContainer2 {
+     
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap : 5px 50px;
+    justify-content : start;
+    padding: 10px;
+    
+    @media only screen and (max-width: 531px) {
+  
+        grid-column-gap :  30px;
+  
+};
+
+@media only screen and (max-width: 537px) {
+  
+    grid-gap : 5px 20px;
+    
+
+};
+
+
+@media only screen and (max-width: 339px) {
+  
+    grid-column-gap :  10px;
+
+};
+
+
+
+}
+
+.bidContainerItemBidder  {
+
+    margin-left: 77px;
+
+    @media only screen and (max-width: 535px) {
+  
+        margin-left: 33px;
+    
+    };
+}
+
+.bidContainerItemBidTime {
+
+    @media only screen and (max-width: 547px) {
+  
+        margin-left: 23px;
+    
+    }
+}
+
+/*bidContainerItem {
+         
+        
+    padding: '20px',
+    
+    }*/
+
+    /*CardContent ~ TextField {background-color:red}*/
+    /*.textField {background-color:red}*/
