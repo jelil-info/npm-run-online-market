@@ -53,7 +53,7 @@ const PlaceOrder2 = (props) => {
     <NoSSR>
     <div className="App">
 
-     <Button color="secondary" variant="contained" onClick={placeOrderEvent}>placeOrder2</Button>
+     <Button color="secondary" variant="contained" onClick={placeOrderEvent}>place Order with flutterwave</Button>
      
      
     

@@ -8,6 +8,7 @@ import Search from './../product/Search'
 import Categories from './../product/Categories'
 import { useRef } from 'react';
 
+
 import NoSSR from 'react-no-ssr';
 
 
@@ -84,8 +85,39 @@ export default function Home(){
     }
   }, [])
 
+  useEffect(() => {
+    document.addEventListener("DOMContentLoaded", function (event) {
+      var scrollpos = sessionStorage.getItem('scrollpos');
+      if (scrollpos) {
+          window.scrollTo(0, scrollpos);
+          sessionStorage.removeItem('scrollpos');
+      }
+  });
+
+  window.addEventListener("beforeunload", function (e) {
+      sessionStorage.setItem('scrollpos', window.scrollY);
+  });  
+  }, []);
+
+  /*useEffect(() => {
+    const setScroll = () => {
+        window.onscroll = (e) => {
+            console.log("scrole r", window.scrollY);
+            window.scrollY > 12 ? localStorage.setItem("scroll_posistion", window.scrollY) : false;
+        };
+    }
+    let pos = localStorage.getItem("scroll_posistion");
+    window.scrollTo(0, pos);
+    window.addEventListener('scroll', setScroll);
+    // Don't forget to clean up the event listener when the component unmounts
+    return () => {
+        window.removeEventListener('scroll', setScroll);
+    };
+}, [0]);*/
+
     return (
       <div className={classes.root}>
+        
         <NoSSR>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={8} lg={8} xl={8}>
@@ -97,11 +129,13 @@ export default function Home(){
             {/*<Suggestions2 products={suggestions} title={suggestionTitle}/>*/}
           </Grid>
         </Grid>
+        
+        
         </NoSSR>
         <div>
-      <h2>Width: {windowSize.current[0]}</h2>
+      {/*<h2>Width: {windowSize.current[0]}</h2>*/}
 
-    <h2>Height: {windowSize.current[1]}</h2>
+    {/*<h2>Height: {windowSize.current[1]}</h2>*/}
     </div>
       </div>
     )

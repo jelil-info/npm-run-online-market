@@ -14,7 +14,9 @@ import PropTypes from 'prop-types'
 import cart from './../cart/cart-helper.js'
 import auth from './../auth/auth-helper'
 import NoSSR from 'react-no-ssr'
-
+import { useHistory } from 'react-router'
+import {Redirect} from 'react-router-dom'
+import {create} from './../order/api-order.js'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -164,24 +166,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function Order({match}) {
 
-
-  const user = auth.isAuthenticated().user
-  const [values, setValues] = useState({
-    checkoutDetails: {
-      products: cart.getCart(),
-      //amount: cart.getTotal(),
-      customer_name: user.name,
-      customer_email: user.email,
-      delivery_address: { street: '', city: '', state: '', zipcode: '', country: '' }
-    },
-    error: ''
-  })
-
-  
   const classes = useStyles()
   const [order, setOrder] = useState({products:[], delivery_address:{}})
-  
-  
+
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -206,6 +193,92 @@ export default function Order({match}) {
     }, 0)
   }
 
+
+
+  const user = auth.isAuthenticated().user
+  const [values, setValues] = useState({
+    checkoutDetails: {
+      products: cart.getCart(),
+      //amount: cart.getTotal(),
+      customer_name: user.name,
+      customer_email: user.email,
+      delivery_address: { street: '', city: '', state: '', zipcode: '', country: '' }
+    },
+    error: ''
+  })
+  /*function settingValue(e) {
+    const item = e.target.value;
+    console.log(item);
+    setValues([...values, item]);
+  }*/
+
+  
+
+  
+  useEffect(() => {
+    const handleLoad = name => event => {
+      event.preventDefault();
+      
+        // Perform actions after the component has fully loaded
+        event.preventDefault();
+      event.returnValue = '';
+      
+      };
+    window.addEventListener('beforeunload', handleLoad);
+    return () => {
+      window.removeEventListener('beforeunload', handleLoad);
+    };
+  }, []);
+  
+
+  
+  
+  /*props => {
+
+    const [values, setValues] = useState({
+      order: {},
+      error: '',
+      redirect: false,
+      orderId: ''
+    })
+  
+    
+    
+    
+    
+    const placeOrderEvent = (data)=>{
+      
+      const jwt = auth.isAuthenticated()
+      create({userId:jwt.user._id}, {
+        t: jwt.token
+      }, props.checkoutDetails).then((data) => {
+        if (data.error) {
+          setValues({...values, error: data.error})
+        } else {
+          cart.emptyCart(()=> {
+            setValues({...values, 'orderId':data._id,'redirect': true})
+          })
+        }
+      })
+    
+    
+    
+    }
+  
+    if (values.redirect) {
+      return (<Redirect to={'/order/' + values.orderId}/>)
+    }
+  
+  
+  }*/
+  
+
+//const history = useHistory()
+
+// then add this to the function that is called for re-rendering
+//history.go(-1)
+//history.pushState(null, '/');
+
     return (
     <NoSSR>
       <Card className={classes.card}>
@@ -229,8 +302,8 @@ export default function Order({match}) {
                         <div className={classes.details}>
                           <CardContent className={classes.content}>
                             <Link to={'/product/'+item.product._id}><Typography type="title" component="h3" className={classes.productTitle} color="primary">{item.product.name}</Typography></Link>
-                            <Typography type="subheading" component="h3" className={classes.itemShop} color="primary">$ {item.product.price} x {item.quantity}</Typography>
-                            <span className={classes.itemTotal}>${item.product.price * item.quantity}</span>
+                            <Typography type="subheading" component="h3" className={classes.itemShop} color="primary">₦{item.product.price} x {item.quantity}</Typography>
+                            <span className={classes.itemTotal}>₦{item.product.price * item.quantity}</span>
                             <span className={classes.itemShop}>Shop: {item.shop.name}</span>
                             <Typography type="subheading" component="h3" color={item.status == "Cancelled" ? "error":"secondary"}>Status: {item.status}</Typography>
                           </CardContent>
@@ -240,7 +313,7 @@ export default function Order({match}) {
                     </span>})
                   }
                   <div className={classes.checkout}>
-                    <span className={classes.total}>Total: ${getTotal()}</span>
+                    <span className={classes.total}>Total: ₦{getTotal()}</span>
                   </div>
                 </Card>
             </Grid>

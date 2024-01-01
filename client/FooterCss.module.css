@@ -1,0 +1,81 @@
+.footerCenter{
+  text-align:center;
+  color:#fff;
+background-color: #00001a;
+padding-top:7px;
+padding-bottom:14px
+  }
+
+
+  .footerButton{
+    border:none;
+    display:inline-block;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  background-color:inherit;
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap;
+  background-color:#ff9999;
+  opacity: 0;
+  animation: fade-in 1.4s;
+  
+  }
+
+  .footerButton:hover{
+    color:#000;
+    background-color:#ff6666;
+    }
+ 
+ .footerButton:disabled{
+   cursor:not-allowed;
+   opacity:0.3
+   }
+ 
+ .footerButton{
+   white-space:normal
+   }
+
+   .footerLarge{
+    font-size:16px!important
+    }
+  .footerSection{
+    margin-top:16px!important;
+    margin-bottom:16px!important;
+    font-size:16px!important
+  }
+  .footerSection:hover{
+    margin-top:16px!important;
+    margin-bottom:16px!important;
+  }
+
+  .footerLast:link {
+    color:#009999;
+}
+.footerLast:visited {
+  color:#009999;
+}
+.footerLast:hover {
+  color:#ff6666;
+}
+.footerLast:active {
+  color:#ff9999;
+}
+
+
+
+.footerOpacity {
+  background-color: black;
+  color: #ff9999;
+}
+
+.footerOpacity:hover{opacity:0.60;color:#ff6666; }
+
+.fa {
+  
+  color: red;
+}
+ 

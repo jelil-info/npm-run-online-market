@@ -290,7 +290,7 @@ export default function Bidding (props) {
                 </div>    
                     {props.auction.bids.map((item, index) => {
                         return <div className={styles.bidContainer2} key={index}>
-                            <div className={styles.bidContainerItem2}><Typography variant="body2">${item.bid}</Typography></div>
+                            <div className={styles.bidContainerItem2}><Typography variant="body2">₦{item.bid}</Typography></div>
                             <div className={styles.bidContainerItem2}><Typography variant="body2">{new Date(item.time).toLocaleString()}</Typography></div>
                             <div className={styles.bidContainerItem2}><Typography variant="body2">{item.bidder.name}</Typography></div>
                         </div>

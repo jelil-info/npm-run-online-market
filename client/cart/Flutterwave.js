@@ -56,8 +56,9 @@ const Flutterwave = (props) => {
    onClose: (incomplete) => {
 
     if (incomplete === true) {
-      return (<Redirect to={'/http://localhost:3000/'}/>)
-    }
+
+      return (<Redirect to={'/http://localhost:3000/'}/>)}
+      
     }
 
    }
@@ -71,14 +72,13 @@ const Flutterwave = (props) => {
   
   <NoSSR>
     
-    <div className="App">
+    <Button className="App">
+      
+    <FlutterWaveButton  {...fwConfig} />
+    
+    </Button>
 
-     
-
-     <FlutterWaveButton  {...fwConfig} />
-    {getTotal()}
-    </div>
-</NoSSR>
+  </NoSSR>
     
   );
 }

@@ -13,6 +13,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import AddToCart from './../cart/AddToCart'
+import AddToCartForMobile from './../cart/AddToCartForMobile'
 //import { useState } from 'react';
 //import { makeStyles } from '@material-ui/styles';
 //import Card from '@material-ui/core/Card';
@@ -81,6 +82,8 @@ const useStyles = makeStyles(theme => ({
 
       'display': 'none'
     },
+
+    
 
   },
 
@@ -429,24 +432,24 @@ export default function Suggestions(props) {
             />
             <div className={classes.details}>
               <CardContent className={classes.content}>
-                <Link to={'/product/' + item._id}><Typography variant="h3" component="h3" className={classes.productTitle} color="primary">{item.name}</Typography></Link>
-                <Link to={'/shops/' + item.shop._id}>
+                <a href={'/product/' + item._id}><Typography variant="h3" component="h3" className={classes.productTitle} color="primary">{item.name}</Typography></a>
+                <a href={'/shops/' + item.shop._id}>
                   <Typography type="subheading" className={classes.subheading}>
                     <Icon className={classes.icon}>shopping_basket</Icon> {item.shop.name}
                   </Typography>
-                </Link>
+                </a>
                 <Typography component="p" className={classes.date}>
                   Added on {(new Date(item.created)).toDateString()}
                 </Typography>
               </CardContent>
               <div className={classes.controls}>
-                <Typography type="subheading" component="h3" className={classes.price} color="primary">$ {item.price}</Typography>
+                <Typography type="subheading" component="h3" className={classes.price} color="primary">₦ {item.price}</Typography>
                 <span className={classes.actions}>
-                  <Link to={'/product/' + item._id}>
+                  <a href={'/product/' + item._id}>
                     <IconButton color="secondary" dense="dense">
                       <ViewIcon className={classes.iconButton} />
                     </IconButton>
-                  </Link>
+                  </a>
                   <AddToCart item={item} />
 
                   
@@ -492,25 +495,20 @@ export default function Suggestions(props) {
             <List 
             
             orientation="horizontal"
-      variant="outlined"
-      sx={{
-        //flexGrow: 0,
-        //mx: 'auto',
-        //'--ListItemDecorator-size': '0px',
-        //'--ListItem-paddingY': '3rem',
-        //'--ListItemWidth': '15px',
-        //'--ListItemHeight': '15px',
-        //borderRadius: 'sm',
-        //padding:'-24px',
-        //marginTop: '30px',
-        width:'500px',
-        height:'50px'
-      }}
-            
-            
-            
-            
-            >
+            variant="outlined"
+            sx={{
+            //flexGrow: 0,
+            //mx: 'auto',
+            //'--ListItemDecorator-size': '0px',
+            //'--ListItem-paddingY': '3rem',
+            //'--ListItemWidth': '15px',
+            //'--ListItemHeight': '15px',
+            //borderRadius: 'sm',
+            //padding:'-24px',
+            //marginTop: '30px',
+            width:'500px',
+            height:'50px'
+            }}>
               
               <ListItem >
 
@@ -518,20 +516,20 @@ export default function Suggestions(props) {
 
               <ListItemDecorator>
 
-                <Link to={'/product/' + item._id}>
+                <a href={'/product/' + item._id}>
                   <Typography variant="h3" component="h3" 
                   className={classes.mobileProductTitle} color="primary">{item.name}
                   </Typography>
-                </Link>
+                </a>
 
                 <ListDivider inset="gutter" /> 
 
-                <Link to={'/shops/' + item.shop._id}>
+                <a href={'/shops/' + item.shop._id}>
 
                   <Typography type="subheading" className={classes.mobileSubheading}>
                     <Icon className={classes.icon}>shopping_basket</Icon> {item.shop.name}
                   </Typography>
-                </Link>
+                </a>
                 
                 
 
@@ -548,12 +546,12 @@ export default function Suggestions(props) {
                 
 
                 <span className={classes.mobileActions}>
-                  <Link to={'/product/' + item._id}>
+                  <a href={'/product/' + item._id}>
                     <IconButton color="secondary" dense="dense">
                       <ViewIcon className={classes.mobileIconButton} />
                     </IconButton>
-                  </Link>
-                  <AddToCart item={item} />
+                  </a>
+                  <AddToCartForMobile item={item} />
                 </span>
               </div>
 

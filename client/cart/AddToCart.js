@@ -11,12 +11,34 @@ import NoSSR from 'react-no-ssr'
 const useStyles = makeStyles(theme => ({
   iconButton: {
     width: '28px',
-    height: '28px'
+    height: '28px',
+    "@media (max-width: 960px)": {
+
+      marginLeft: '-150px',
+      marginBottom: '-35px'
+    
+    },
+    "@media (max-width: 400px)": {
+
+      marginLeft: '-150px',
+      marginBottom: '-35px'
+    
+    },
+    
   },
+
   disabledIconButton: {
     color: '#7f7563',
     width: '28px',
-    height: '28px'
+    height: '28px',
+    
+    "@media (max-width: 400px)": {
+
+      marginLeft: '-150px',
+      marginBottom: '-35px'
+      
+    },
+    
   }
 }))
 

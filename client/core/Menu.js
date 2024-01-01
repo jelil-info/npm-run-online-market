@@ -33,6 +33,7 @@ import NoSSR from 'react-no-ssr';
 
 
 
+
 /*const headersData = [
   {
     label: "Listings",
@@ -111,7 +112,7 @@ const useStylesCustom = makeStyles(theme => ({
     'float': 'left',
     "@media (max-width: 403px)": {
 
-      backgroundColor: 'yellow',
+      backgroundColor: 'brown',
 
 
 
@@ -135,36 +136,36 @@ const useStylesCustom = makeStyles(theme => ({
 
     "@media (max-width: 452px)": {
       backgroundColor: '#333',
-      'marginRight': '-120px',
+      'marginRight': '-80px',
 
 
       // whiteSpace: 'nowrap'
     },
 
-    "@media (max-width: 362px)": {
+    /*"@media (max-width: 362px)": {
       backgroundColor: '#333',
-      'marginRight': '-180px',
+      'marginRight': '-270px',
 
 
       // whiteSpace: 'nowrap'
-    },
+    },*/
 
-    "@media (max-width: 304px)": {
+    "@media (max-width: 350px)": {
       backgroundColor: '#333',
-      'marginRight': '-200px',
+      'marginRight': '-130px',
 
 
       // whiteSpace: 'nowrap'
     },
 
 
-    "@media (max-width: 276px)": {
+    /*"@media (max-width: 276px)": {
       backgroundColor: '#333',
       'marginRight': '-220px',
 
 
       // whiteSpace: 'nowrap'
-    },
+    },*/
 
     //backgroundcolor: "yellow",
     //marginTop: "138px",
@@ -193,6 +194,19 @@ const useStylesCustom = makeStyles(theme => ({
 
 
   },
+
+  hello: {
+    display: "block",
+    color: "pink",
+    fontWeight: "bold",
+    fontSize: "10px",
+    whiteSpace: "nowrap",
+    width: '200px',
+    overflow: 'hidden',
+    textOverflow: "ellipsis",
+    //verticalAlign: "super"
+ },
+
 
 
 
@@ -227,6 +241,7 @@ const useStylesCustom = makeStyles(theme => ({
     toolbarMargin: theme.mixins.toolbar
   },
 
+  
   toolbarMargin: theme.mixins.toolbar
 
 
@@ -242,7 +257,7 @@ function Header() {
 
 
   const { header, logo, menuButton, toolbar, drawerContainer, personalFeatures, personalFeaturesMobile2, mobileSpace,
-    closeButton, panelDetails, personalFeaturesMobile1, personalFeaturesMobile2Signup, toolbarMargin } = useStylesCustom();
+    closeButton, panelDetails, personalFeaturesMobile1, personalFeaturesMobile2Signup, toolbarMargin, hello } = useStylesCustom();
 
 
 
@@ -281,7 +296,9 @@ function Header() {
       <Toolbar className={toolbarMargin}>
 
         {DesktopMenu()}
+        
       </Toolbar>
+      
   </NoSSR>
 
     );
@@ -432,7 +449,7 @@ function Header() {
               {
                 auth.isAuthenticated() && (<span>
 
-                  <span style={{ color: "red", fontWeight: "bold", fontSize: "16px", }}>
+                  <span className={hello} style={{ color: "red", fontWeight: "bold", fontSize: "13px", }}>
                       Hello, {auth.isAuthenticated().user.name}
                   </span>
                   
@@ -577,7 +594,7 @@ function Header() {
 
             {
               auth.isAuthenticated() && (<span>
-                <Typography variant="h6"
+                <Typography variant="h6" className={hello}
                   style={{
                     color: "red", fontWeight: "bold", fontSize: "16px", 'display': 'block',
                     'marginLeft': '9px'
@@ -628,7 +645,7 @@ function Header() {
 
           </span>
 
-          
+            
         </div>
       </div>
       </NoSSR>
@@ -708,8 +725,8 @@ function Header() {
             {
               auth.isAuthenticated() && (<span>
 
-                <span style={{ color: "red", fontWeight: "bold", fontSize: "12px", }}>
-                  Hello, {auth.isAuthenticated().user.name}
+                <span className={hello}>
+                  Hello, {auth.isAuthenticated().user.name} 
                 </span>
 
 

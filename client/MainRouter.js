@@ -40,10 +40,13 @@ import NewAuction from './auction/NewAuction'
 import EditAuction from './auction/EditAuction'
 import Auction from './auction/Auction'
 import A from './cart/A'
+import Footer from './Footer'
+
 
 const MainRouter = () => {
   return (<div>
     <DesktopMenu />
+    
     
     
     <Switch>
@@ -82,7 +85,7 @@ const MainRouter = () => {
       
     </Switch>
     
-  
+  <Footer/>
   </div>)
 }
 

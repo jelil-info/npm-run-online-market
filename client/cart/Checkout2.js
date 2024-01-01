@@ -141,7 +141,7 @@ export default function Checkout() {
             <PlaceOrder checkoutDetails={values.checkoutDetails} />
             
         </Elements>
-        Card numbers; Month/Year; CVC
+        {/*Card numbers; Month/Year; CVC*/}
         {/*<Flutterwave  checkoutDetails={values.checkoutDetails} />*/}
         <PlaceOrder2  checkoutDetails={values.checkoutDetails} />
         

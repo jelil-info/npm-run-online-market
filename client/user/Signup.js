@@ -38,7 +38,37 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: 'auto',
     marginBottom: theme.spacing(2)
-  }
+  },
+  passwordTitle: {
+    margin: 'auto',
+    width: '210px',
+    //padding: '70px',
+    textAlign: 'left',
+    color: theme.palette.openTitle,
+    fontSize: '17px',
+    "@media (min-width: 410px)": {
+    
+      marginLeft: '100px',
+    //'text-overflow': 'ellipsis',
+    
+    },
+
+  },
+  passwordRequirements: {
+    'list-style-type': 'square',
+    margin: 'auto',
+    width: '60%',
+    //padding: '70px',
+    textAlign: 'left'
+    
+    //marginLeft: '170px',
+    //marginRight: '170px',
+    //width: 230,
+
+  },
+  
+
+
 }))
 
 export default function Signup() {
@@ -73,7 +103,26 @@ export default function Signup() {
     <NoSSR>
     <div>
       <Card className={classes.card}>
+       
         <CardContent>
+
+        <div>
+        <Typography  className={classes.passwordTitle}>
+        Password Requirements:
+        </Typography>
+
+        <ol className={classes.passwordRequirements}>
+        
+          <li>A numeric character</li>
+          <li>A minimum of 8 characters</li>
+          <li>An uppercase character</li>
+          <li>A special character</li>
+          <li>An alphabetic character</li>
+          <li>A lowercase character</li>
+
+        </ol>
+        
+        </div>
           <Typography variant="h6" className={classes.title}>
             Sign Up
           </Typography>

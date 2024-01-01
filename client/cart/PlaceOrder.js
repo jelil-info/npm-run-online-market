@@ -103,7 +103,7 @@ const PlaceOrder = (props) => {
               {values.error}
           </Typography>)
         }
-        <Button color="secondary" variant="contained" onClick={placeOrder}>Place Order</Button>
+        <Button color="secondary" variant="contained" onClick={placeOrder}>Place Order with stripe</Button>
       </div>
     </span>
     </NoSSR>

@@ -21,6 +21,7 @@ export default ({markup, css}) => {
           <style id="jss-server-side">${css}</style>
           <script id="stripe-js" src="https://js.stripe.com/v3/" async></script>
           <script type="text/javascript" src="/dist/bundle.js"></script>
+          <script src="https://kit.fontawesome.com/40c559f4dd.js"></script>
         </body>
       </html>`
 }

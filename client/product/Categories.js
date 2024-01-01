@@ -12,22 +12,35 @@ import Products from './Products'
 import NoSSR from 'react-no-ssr'
 
 const useStyles = makeStyles(theme => ({
+
+'*': {'box-sizing': 'border-box'},
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    //justifyContent: 'space-around',
     overflow: 'hidden',
+    
     background: theme.palette.background.paper,
   },
   gridList: {
-    flexWrap: 'nowrap',
-    width:'100%',
-    transform: 'translateZ(0)',
+    display: 'flex',
+    //flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    //border: '1px solid black',
+    width: '700px',
+    height: '64px',
+   'overflow-y': 'hidden',
+   'overflow-x': 'scroll',
+   marginLeft: '20px'
+    
   },
   tileTitle: {
+    float:'left',
     verticalAlign: 'middle',
     lineHeight: 2.5,
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize: '1.35em',
     margin: '0 4px 0 0',
   },
@@ -44,12 +57,16 @@ const useStyles = makeStyles(theme => ({
   icon: {
     verticalAlign: 'sub',
     color: '#738272',
-    fontSize: '0.9em'
+    fontSize: '0.9em',
+    display: 'block',
+    padding: '8px'
+    
   },
   link: {
     color: '#4d6538',
     textShadow: '0px 2px 12px #ffffff',
-    cursor:'pointer'
+    cursor:'pointer',
+    
   }
 }))
 
@@ -93,18 +110,18 @@ export default function Categories(props){
     <NoSSR>
       <div>
         <Card className={classes.card}>
-          <Typography type="title" className={classes.title}>
+          <p type="title" className={classes.title}>
             Explore by category
-          </Typography>
+          </p>
           <div className={classes.root}>
             
-            <GridList className={classes.gridList} cols={4}>
+            <p className={classes.gridList} >
               {props.categories.map((tile, i) => (
-                <GridListTile key={i} className={classes.tileTitle} style={{height: '64px', backgroundColor: selected == tile? 'rgba(95, 139, 137, 0.56)':'rgba(95, 124, 139, 0.32)'}}>
-                  <span className={classes.link} onClick={listbyCategory(tile)}>{tile}  <Icon className={classes.icon}>{selected == tile && 'arrow_drop_down'}</Icon></span>
-                </GridListTile>
+                <span key={i} className={classes.tileTitle} style={{ backgroundColor: selected == tile? 'rgba(95, 139, 137, 0.56)':'rgba(95, 124, 139, 0.32)'}}>
+                  <a className={classes.link} onClick={listbyCategory(tile)}>{tile}  <Icon className={classes.icon}>{selected == tile && 'arrow_drop_down'}</Icon></a>
+                </span>
               ))}
-            </GridList>
+            </p>
             
           </div>
           <Divider/>

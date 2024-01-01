@@ -28,8 +28,9 @@ const useStyles = makeStyles(theme => ({
     padding:'24px 40px 40px',
    // maxWidth: 345,
     "@media (max-width: 894px)": {
+      
       marginTop: theme.spacing(7),
-    marginBottom: theme.spacing(1),
+      marginBottom: theme.spacing(1),
     
       
       },
@@ -141,6 +142,17 @@ const useStyles = makeStyles(theme => ({
   action: {
     margin: '8px 24px',
     display: 'inline-block'
+  },
+  mobileImage: {
+
+    "@media (max-width: 500px)": {
+      
+      width:'130px',
+      //heigth: '330px',
+      marginLeft: '-24px',
+      
+      },
+
   }
 }))
 
@@ -185,6 +197,7 @@ export default function Product ({match}) {
     const imageUrl = product._id
           ? `/api/product/image/${product._id}?${new Date().getTime()}`
           : '/api/product/defaultphoto'
+          
     return (
     <NoSSR>
         <div className={classes.root}>
@@ -207,13 +220,15 @@ export default function Product ({match}) {
                     
                     title={product.name}
                   >
-                  <img src={imageUrl}/>
-</CardMedia>
+
+                    <img  className={classes.mobileImage} src={imageUrl}/>
+                  
+                  </CardMedia>
 
                 
                   <Typography component="p" variant="subtitle1" className={classes.subheading}>
                     {product.description}<br/>
-                    <span className={classes.price}>$ {product.price}</span>
+                    <span className={classes.price}>₦ {product.price}</span>
                     <Link to={'/shops/'+product.shop._id} className={classes.link}>
                       <span>
                         <Icon className={classes.icon}>shopping_basket</Icon> {product.shop.name}
